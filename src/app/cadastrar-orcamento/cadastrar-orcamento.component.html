@@ -1,0 +1,53 @@
+<form
+  class="container orcamento__cadastro"
+  #cadastrarForm="ngForm"
+  (ngSubmit)="cadastrarOrcamento(); cadastrarForm.reset()"
+>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Descrição"
+    aria-label="Descrição"
+    name="descricao"
+    [(ngModel)]="descricao"
+  />
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Mês"
+    aria-label="Mês"
+    name="mes"
+    [(ngModel)]="mes"
+  />
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Ano"
+    aria-label="Ano"
+    name="ano"
+    [(ngModel)]="ano"
+  />
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Valor total"
+    aria-label="Valor total"
+    name="valorTotalInformado"
+    [(ngModel)]="valorTotalInformado"
+  />
+
+  <textarea
+    class="form-control"
+    placeholder="Itens do Orçamento (CSV):"
+    aria-label="Itens do Orçamento (CSV):"
+    name="itensOrcamentoCSV"
+    [(ngModel)]="itensOrcamentoCSV"
+  ></textarea>
+  <div class="form-buttons salvar">
+    <button type="button" class="btn btn-outline-danger">Cancelar</button>
+    <button type="submit" class="btn btn-outline-dark">Salvar</button>
+  </div>
+</form>

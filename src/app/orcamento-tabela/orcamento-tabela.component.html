@@ -1,0 +1,50 @@
+<section class="container" id="">
+  <h2 class="titulo">Orçamentos</h2>
+  <table class="tabela table table-dark table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Periodo</th>
+        <th scope="col">Valor Total Informado</th>
+        <th scope="col">Valor Total Calculado</th>
+        <th scope="col">Diferença de preço</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="orcamentos.length > 0; else listaVazia">
+      <tr *ngFor="let orcamento of orcamentos">
+        <td>{{ orcamento.id }}</td>
+        <td>{{ orcamento.descricao }}</td>
+        <td>{{ orcamento.mes }}/{{ orcamento.ano }}</td>
+        <td>{{ orcamento.valorTotalInformado }}</td>
+        <td>{{ orcamento.valorTotalCalculado }}</td>
+        <td>{{ orcamento.diferencaCalculo }}</td>
+        <td>
+          <span class="material-icons icons" (click)="deleteById(orcamento.id)">
+            delete
+          </span>
+          <span class="material-icons icons" (click)="onSelect(orcamento.id)">
+            search
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container-btn">
+    <button
+      type="button"
+      class="btn orcamento-btn btn-outline-dark"
+      value="click"
+      (click)="update()"
+    >
+      Novo Orçamento
+    </button>
+  </div>
+</section>
+
+<app-cadastrar-orcamento *ngIf="display"></app-cadastrar-orcamento>
+
+<ng-template #listaVazia>
+  <p>Nenhuma há orcamento cadastrado</p>
+</ng-template>
