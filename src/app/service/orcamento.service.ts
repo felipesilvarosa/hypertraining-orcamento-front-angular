@@ -23,6 +23,11 @@ export class OrcamentoService {
     return this.httpClient.get<Orcamento[]>(this.url);
   }
 
+  listarPorId(id: number): Observable<Orcamento> {
+    const urlGet = `${this.url}/${id}`;
+    return this.httpClient.get<Orcamento>(urlGet);
+  }
+
   cadastrar(orcamento: OrcamentoRequisicaoPost): Observable<any> {
     return this.httpClient.post<OrcamentoRequisicaoPost>(this.url, orcamento);
   }

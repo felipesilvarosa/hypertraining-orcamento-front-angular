@@ -8,7 +8,8 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class ItemOrcamentoService {
   private itensOrcamento: ItemDetalhe[];
-  private url = '/api/orcamentos/:id/itens-orcamento';
+  private urlItemOrcamento = '/api/orcamentos/:id/itens-orcamento';
+  private urlInconsistencia = '/api/orcamentos/:id/inconsistencias';
 
   constructor(private httpClient: HttpClient) {
     this.itensOrcamento = [];
@@ -16,7 +17,12 @@ export class ItemOrcamentoService {
 
   getItensOrcamento(id: any): Observable<ItemDetalhe[]> {
     return this.httpClient.get<ItemDetalhe[]>(
-      this.url.replace(':id', id.toString())
+      this.urlItemOrcamento.replace(':id', id.toString())
+    );
+  }
+  getInconsistencia(id: any): Observable<String[]> {
+    return this.httpClient.get<String[]>(
+      this.urlInconsistencia.replace(':id', id.toString())
     );
   }
 }

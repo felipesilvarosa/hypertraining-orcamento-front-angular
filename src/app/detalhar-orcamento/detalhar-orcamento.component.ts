@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemOrcamentoService } from '../service/itemOrcamento.service';
 import { ItemDetalhe } from '../service/models/item-detalhas.model';
+import { Orcamento } from '../service/models/orcamento.model';
 import { OrcamentoService } from '../service/orcamento.service';
 
 @Component({
@@ -18,12 +19,16 @@ export class DetalharOrcamentoComponent implements OnInit {
 
   orcamentoId: any;
   listaItens: ItemDetalhe[] = [];
+  listaInconsistencias: String[] = [];
+  orcamento!: Orcamento;
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((params) => {
       let orcamentoRecebido = params.get('id');
       this.orcamentoId = orcamentoRecebido;
       this.getItensOrcamento();
+      this.getInconsistencias();
+      this.getOrcamentoById();
     });
   }
 
@@ -32,6 +37,22 @@ export class DetalharOrcamentoComponent implements OnInit {
       .getItensOrcamento(this.orcamentoId)
       .subscribe((itens: ItemDetalhe[]) => {
         this.listaItens = itens;
+      });
+  }
+
+  private getInconsistencias() {
+    return this.serviceItens
+      .getInconsistencia(this.orcamentoId)
+      .subscribe((inconsistencias: String[]) => {
+        this.listaInconsistencias = inconsistencias;
+      });
+  }
+
+  private getOrcamentoById() {
+    this.serviceOrcamento
+      .listarPorId(this.orcamentoId)
+      .subscribe((orcamento: Orcamento) => {
+        this.orcamento = orcamento;
       });
   }
 }
