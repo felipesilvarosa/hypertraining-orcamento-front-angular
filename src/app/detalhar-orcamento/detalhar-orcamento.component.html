@@ -1,9 +1,9 @@
 <ul class="orcamento-description">
-  <li>Descrição: {{ orcamentoId }}</li>
-  <li>Periodo:</li>
-  <li>Valor total informado: R$</li>
-  <li>Valor total calculado: R$</li>
-  <li>Diferença de Calculo: R$</li>
+  <li>Descrição: {{ orcamento.descricao }}</li>
+  <li>Periodo: {{ orcamento.mes }}/{{ orcamento.ano }}</li>
+  <li>Valor total informado: R${{ orcamento.valorTotalInformado }}</li>
+  <li>Valor total calculado: R${{ orcamento.valorTotalCalculado }}</li>
+  <li>Diferença de Calculo: R${{ orcamento.diferencaCalculo }}</li>
 </ul>
 
 <table class="table table-dark table-hover table-striped">
@@ -32,3 +32,7 @@
     </tr>
   </tbody>
 </table>
+
+<ul *ngFor="let inconsistencia of listaInconsistencias">
+  <li>{{ inconsistencia }}</li>
+</ul>
